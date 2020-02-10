@@ -5,7 +5,7 @@ class FeatureRunner {
 
     @Karate.Test
     Karate bookitRooms() {
-        return new Karate().tags("@bookit").relativeTo(getClass());
+        return new Karate().tags("@scenario_outline_bookit").relativeTo(getClass());
     }
 
     @Karate.Test
