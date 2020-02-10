@@ -53,11 +53,12 @@ Feature: practice with spartan app
     Then print response
     And status 204
 
-#PUT requires all parameters, wheres PATCH one ore more
+#PUT requires to provide entire payload. If we have Spartan, we need to specify every single parameter: name, phone, gender.
+#  PATCH doesn't require to provide entire payload to update. You can partially update spartan by specifying either name, or phone, or gender, or all of them
   @update_spartan
   Scenario: Update existing spartan
-    Given path '/api/spartans/183'
-    And request {name:'New_Spartan'}
+    Given path '/api/spartans/214'
+    And request {name:'New_Spartan', gender: 'Male', phone:'3112124124'}
     When method put
     Then print response
     And status 204
