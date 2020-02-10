@@ -33,11 +33,16 @@ Feature: bookit tests
     Then status 200
     And print response[0].name
 
+
+#put some other email, otherwise it will not work
+#  bookit required unique email address
 #    {{qa1_url}}/api/students/student?first-name&last-name&email&password&role&campus-location&batch-number&team-name
   @add_new_student
     Scenario: Add new student
       Given path '/api/students/student'
+      * header Authorization = token
       * params {first-name:'Paul', last-name:'George', email:'pgeorge@email.com', password:'1111', role:'student-team-member', campus-location:'VA', batch-number: 12, team-name:'Online_Hackers'}
+      * request 'test'
       When method post
       Then status 201
       And print response
