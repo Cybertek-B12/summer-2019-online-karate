@@ -1,0 +1,130 @@
+Today is February 10 2020
+
+	Agenda: Karate (not a fighting)
+
+
+###################
+
+	To be able to push to Cybertekschool github repository, you must be a collaborator. Otherwise, you cannot do that.
+
+
+Let's clone karate project from github:
+
+1. Open Intellij
+
+2. Go to File -> New -> Project from Version Control System ->
+enter this URL: https://github.com/CybertekSchool/summer-2019-online-karate.git
+
+3. You should be able to see karate project.
+
+ *  Enable auto-import
+
+ *  Setup SDK if needed
+
+I don't know this tool, what should I do?
+
+* Answer: Many times, people get hired as SDET but not with the tools that you have learned. So you have to be ready for using new unknown tools. First thing that I would do, I would request knowledge transfer session from more experienced testers. Then, I would go to youtube.com/pluralsight.com/lynda.com/udemy.om or anything else and find a course to get a basic idea about new tool. Then, once I have a basic idea, I would try to find a documentation, since it has all required information.
+
+So how about Karate? Karate has a documentation too.
+
+github page: https://github.com/intuit/karate
+
+
+In cucumber, we have:
+ Feature file --> Step Definition class --> Runner Class
+
+ In Karate, we have:
+
+ Feature file --> Runner class
+
+Karate is a syntax/synthetic sugar for API testing. It doesn't require java knowledge. What you need to do, just create feature file and add runner. That's it. You can even skip runner class, if you would run tests as maven command:
+
+mvn test.
+
+Karate BDD - it's a BDD test automation API framework. It's an alternative for RestAssured. Yo don't write java classes here, no utilities, no POJOs. Easier, but anything easy is kind of limited in functionality.
+
+Karate seats on top of Cucumber JVM. That's why we gonna write feature files exactly in the same way as with regular cucumber.  Karate doesn't rely on RestAssured, it relies on native HTTP java client. Karate works with maven and gradle. Also it supports Junit 4 and Junit 5. There is small difference in the setup with Junit 4 and 5. Also, we don't need Gson here and hamcrest.
+
+
+
+
+in the Karate, we have karate-config.js file, that works kind of as configuration.properties file in our project.
+
+karate-config.js - it's a standard file.
+
+you can create environment variables there, provide connection URL's, etc..
+
+logback-test.xml - this is a file, for logger configuration. What is logger? It's a program, that prints into the condole information, errors, warnings with date time stamp. Also, all logged info will be saved in text file. When you are using System. out to print, once you run something again, that text disappears. With logger, message will be saved into text file. Log file is used for debugging. Let's say when regression is done, you will not see console output, but you will the report. Report, will not have all details, that log file has. Don't worry about syntax, most of the people just use default file.
+
+Nashorn engine is planned to be removed from a future JDK release
+
+
+Nashorn - this is a javascript engine, that has been deprecated (since JDK 11), and since Karaete is using it, java warns to update library logic and switch to something else.
+
+Karate use Gherkin language for defining feature files.
+
+As usually, we use Given, When, Then, And keywords...
+
+* - it's a wild-card, instead of any keyword.
+
+
+Like in the RestAssured, we use given for setup
+
+when - to specify request method: GET, POST, PUT, DELETE, PATCH, etc...
+
+then - for assertions.
+
+Karate supports JsonPath, so we can validate payload in the same way like in RestAssured. But there is no code.
+
+To start with Karate framework, we need 2 libraries:
+
+<properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.version>1.8</java.version>
+        <maven.compiler.version>3.6.0</maven.compiler.version>
+        <karate.version>0.9.4</karate.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.intuit.karate</groupId>
+            <artifactId>karate-apache</artifactId>
+            <version>${karate.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.intuit.karate</groupId>
+            <artifactId>karate-junit5</artifactId>
+            <version>${karate.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+karate-apache and karate-junit5/karate-junit4
+
+
+Karate used to be only for API testing only, now they added selenium as well for UI testing.
+
+
+   Scenario: Add new student
+      Given path '/api/students/student'
+      * header Authorization = token
+      * params {first-name:'Paul', last-name:'George', email:'pgeorge@email.com', password:'1111', role:'student-team-member', campus-location:'VA', batch-number: 12, team-name:'Online_Hackers'}
+      * request 'test'
+      When method post
+      Then status 201
+      And print response
+
+The problem with Karate that we faced, it that for POST request it requires body. bookit API doesn't retrieve parameters from the payload/body, instead it takes parameters from the link. But since karate doesn't allow to POST without body, we had to include something into body:  * request 'test'. To test, it's our payload.
+
+
+params  - stands for query parameters.
+header - to specify header parameters, for example Authorization token.
+
+Karate it's a API BDD test automation framework. It use Gherkin language to write tests. No coding is required to create test, you just need to write feature file with scenarios or scenario outlines. Karate seats on top of Cucumber BDD, that's why feature file syntax is the same. Karate use Nashorn engine for running javascript. It's already deprecated, that's why you are getting this warning: Warning: Nashorn engine is planned to be removed from a future JDK release.
+
+
+
+
+
+
