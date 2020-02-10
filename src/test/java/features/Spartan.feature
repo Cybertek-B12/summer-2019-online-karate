@@ -25,6 +25,7 @@ Feature: practice with spartan app
     When method post
     Then status 201
 
+#    120 - user id to delete
     @delete_spartan
     Scenario: Delete spartan
       Given path 'api/spartans/120'
