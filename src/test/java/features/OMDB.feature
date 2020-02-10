@@ -14,5 +14,6 @@ Feature: OMDB tests
     And param apikey = '9f94d4d0'
     When method get
     Then status 200
+    And assert response.Title == 'Home Alone'
   
 #401 - unauthorized, cannot give you the data, without API key        
