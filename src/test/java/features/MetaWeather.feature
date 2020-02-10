@@ -9,4 +9,7 @@ Feature: Meta weather tests
       And param query = 'London'
       When method get
       Then status 200
-      And match response contains {title:'London'}
+#      verify that first Json object from the payload contains title:'London'
+      And match response[0] contains {title:'London'}
+#      Verify that every object in the payload contains title:'London'
+      And match each response contains {title:'London'}
