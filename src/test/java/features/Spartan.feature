@@ -40,4 +40,5 @@ Feature: practice with spartan app
     * request spartan
     When method post
     Then status 201
+    Then assert response.success == 'A Spartan is Born!'
     * print response
