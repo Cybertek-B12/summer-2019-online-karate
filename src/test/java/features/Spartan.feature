@@ -33,6 +33,7 @@ Feature: practice with spartan app
     Then status 204
     * print response
 
+  @add_spartan_with_external_json
   Scenario: Add new spartan by reading external JSON payload
     Given path '/api/spartans'
     * def spartan = read('../test_data/payloads/spartan.json')
