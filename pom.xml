@@ -47,8 +47,8 @@
                 <version>${maven.compiler.version}</version>
                 <configuration>
                     <encoding>UTF-8</encoding>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
+                    <source>10</source>
+                    <target>10</target>
                     <compilerArgument>-Werror</compilerArgument>
                 </configuration>
             </plugin>

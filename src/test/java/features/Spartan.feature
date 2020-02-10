@@ -13,7 +13,7 @@ Feature: practice with spartan app
 
   Scenario: Add new spartan and verify status code 201
     Given path '/api/spartans'
-    * def spartan = 
+    * def spartan =
     """  
       {
       "name": "Karate_Master",
@@ -26,9 +26,17 @@ Feature: practice with spartan app
     Then status 201
 
 #    120 - user id to delete
-    @delete_spartan
-    Scenario: Delete spartan
-      Given path 'api/spartans/120'
-      When method delete
-      Then status 204
-      * print response
+  @delete_spartan
+  Scenario: Delete spartan
+    Given path 'api/spartans/120'
+    When method delete
+    Then status 204
+    * print response
+
+  Scenario: Add new spartan by reading external JSON payload
+    Given path '/api/spartans'
+    * def spartan = read('../test_data/payloads/spartan.json')
+    * request spartan
+    When method post
+    Then status 201
+    * print response
