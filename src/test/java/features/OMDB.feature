@@ -15,5 +15,6 @@ Feature: OMDB tests
     When method get
     Then status 200
     And assert response.Title == 'Home Alone'
+    And assert response.Rated == 'PG'
   
 #401 - unauthorized, cannot give you the data, without API key        
