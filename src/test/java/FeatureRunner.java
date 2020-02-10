@@ -34,4 +34,9 @@ class FeatureRunner {
         return new Karate().tags("@add_spartan_with_external_json").relativeTo(getClass());
     }
 
+    @Karate.Test
+    Karate patchSpartan() {
+        return new Karate().tags("@patch_spartan").relativeTo(getClass());
+    }
+
 }

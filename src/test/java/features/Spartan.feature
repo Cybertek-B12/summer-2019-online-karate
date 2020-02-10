@@ -42,3 +42,22 @@ Feature: practice with spartan app
     Then status 201
     Then assert response.success == 'A Spartan is Born!'
     * print response
+
+#    PATCH - partial update of existing entity (object)
+
+  @patch_spartan
+  Scenario: Patch existing spartan
+    Given path '/api/spartans/183'
+    And request {name:'New_Spartan'}
+    When method patch
+    Then print response
+    And status 204
+
+#PUT requires all parameters, wheres PATCH one ore more
+  @update_spartan
+  Scenario: Update existing spartan
+    Given path '/api/spartans/183'
+    And request {name:'New_Spartan'}
+    When method put
+    Then print response
+    And status 204
