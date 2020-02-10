@@ -8,4 +8,9 @@ class FeatureRunner {
         return new Karate().tags("@omdb").relativeTo(getClass());
     }
 
+    @Karate.Test
+    Karate metaWeatherTests(){
+        return new Karate().tags("@meta_weather").relativeTo(getClass());
+    }
+
 }
