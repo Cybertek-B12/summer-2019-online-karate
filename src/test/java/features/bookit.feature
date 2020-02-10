@@ -19,3 +19,5 @@ Feature: bookit tests
     * param password = 'maxpayne'
     When method get
     Then status 200
+    * def token = response.accessToken
+    * print "Token: ", token
